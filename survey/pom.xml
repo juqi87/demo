@@ -3,12 +3,158 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.jq</groupId>
   <artifactId>survey</artifactId>
-  <version>1.0</version>
   <packaging>pom</packaging>
+  <version>1.0</version>
+  <name>survey</name>
+  <url>http://maven.apache.org</url>
+  
+  <build>
+    <finalName>survey</finalName>
+    
+  </build>
+  
+  <!-- 导入依赖包 -->
+  <dependencies>
+  	<!-- log4j -->
+  	<dependency>
+  		<groupId>log4j</groupId>
+  		<artifactId>log4j</artifactId>
+  		<version>1.2.17</version>
+  	</dependency>
+  	
+  	<!-- junit单元测试 -->
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.11</version>
+  	</dependency>
+  	
+  	<!-- mysql数据库驱动 -->
+  	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis-spring</artifactId>
+		<version>1.1.1</version>
+	</dependency>
+	  	
+  	<!-- myBatis的包 -->
+  	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>3.1.1</version>
+	</dependency>
+  	<dependency>
+  		<groupId>mysql</groupId>
+  		<artifactId>mysql-connector-java</artifactId>
+  		<version>5.1.25</version>
+  	</dependency>
+  	
+  	<!-- cglib动态代理 -->
+	<dependency>
+		<groupId>cglib</groupId>
+		<artifactId>cglib-nodep</artifactId>
+		<version>2.2</version>
+	</dependency>
+  	
+  	<!-- 导入一些开源的工具包,用于处理Java基本对象的工具包,可简化程序中种的很多写法 -->
+  	<dependency>
+		<groupId>commons-lang</groupId>
+		<artifactId>commons-lang</artifactId>
+		<version>${commons.lang.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>commons-collections</groupId>
+		<artifactId>commons-collections</artifactId>
+		<version>${commons.collections.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>commons-dbcp</groupId>
+		<artifactId>commons-dbcp</artifactId>
+		<version>${commons.dbcp.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>commons-fileupload</groupId>
+		<artifactId>commons-fileupload</artifactId>
+		<version>1.2.2</version>
+	</dependency>
+	
+	<!-- xml解析工具包 -->
+	<dependency>
+		<groupId>dom4j</groupId>
+		<artifactId>dom4j</artifactId>
+		<version>${dom4j.version}</version>
+	</dependency>
+	
+	<!-- 编译需要发布不需要的包 provided表明只作用在编译测试时 -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>servlet-api</artifactId>
+		<version>2.5</version>
+		<scope>provided</scope>
+	</dependency>
+  	
+  	<!-- spring3 -->
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-core</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-context</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-jdbc</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-beans</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-expression</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-orm</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+  	<!-- web主要是spring controlle层的一些核心封装 -->
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-web</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+  	<!-- web-mvc主要是一些view层的核心封装，提供各前端技术及标签支持 -->
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-webmvc</artifactId>
+  		<version>${spring.version}</version>
+  	</dependency>
+  	
+  </dependencies>
+  
+  <properties>
+	<!--指定Maven用什么编码来读取源码及文档 -->
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<!--指定Maven用什么编码来呈现站点的HTML文件 -->
+  	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  	<!-- 引用的版本信息 -->
+  	<spring.version>3.2.3.RELEASE</spring.version>
+  	<commons.lang.version>2.6</commons.lang.version>
+  	<commons.collections.version>3.2.1</commons.collections.version>
+  	<commons.dbcp.version>1.2.2</commons.dbcp.version>
+  	<dom4j.version>1.6.1</dom4j.version>
+  </properties>
+  
   <modules>
     <module>survey-web</module>
-    <module>survey-service</module>
-    <module>survey-dao</module>
     <module>survey-utils</module>
+    <module>survey-dao</module>
+    <module>survey-service</module>
   </modules>
 </project>
