@@ -13,7 +13,7 @@ public class TestController {
 	
 	@RequestMapping(value="test.htm", method = RequestMethod.GET)
 	public String dataQuestion(String path, Model model, HttpServletRequest request){
-		System.out.println(1112213333);
+		System.out.println(1111122221);
 		return "paper/dataQuestion";
 	}
 }
