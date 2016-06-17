@@ -1,0 +1,6 @@
+*.classpath
+*.project
+*.settings
+target
+org.eclipse.jdt.core.prefs
+org.maven.ide.eclipse.prefs
