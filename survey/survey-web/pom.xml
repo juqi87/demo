@@ -2,17 +2,23 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.jq</groupId>
-    <artifactId>survey</artifactId>
-    <version>1.0</version>
-  </parent>
   <groupId>com.jq</groupId>
   <artifactId>survey-web</artifactId>
   <version>1.0</version>
   <packaging>war</packaging>
   <name>survey-web Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  
+  <parent>
+    <groupId>com.jq</groupId>
+    <artifactId>survey</artifactId>
+    <version>1.0</version>
+  </parent>
+  
+  <build>
+    <finalName>survey</finalName>
+  </build>
+  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -20,8 +26,23 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
+    <!-- 引用其他模块 -->
+    <dependency>
+      <groupId>com.jq</groupId>
+      <artifactId>survey-service</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.jq</groupId>
+      <artifactId>survey-dao</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.jq</groupId>
+      <artifactId>survey-utils</artifactId>
+      <version>${project.version}</version>
+    </dependency>
   </dependencies>
-  <build>
-    <finalName>survey-web</finalName>
-  </build>
+  
 </project>

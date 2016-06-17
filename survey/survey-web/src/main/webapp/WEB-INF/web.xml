@@ -1,7 +1,79 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" 
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  
+  <!-- 没什么意思,一段描述性的文字,修改对项目无影响 -->
+  <display-name>survey</display-name>
+  
+  <!--监听spring上下文容器 -->
+  <listener>
+  	<!-- 默认监听default: /WEB-INF/applicationContext.xml -->
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+  	<!-- 该监听器主要负责处理由JavaBeans Introspector的使用而引起的缓冲泄露 -->
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener>
+  
+  <!-- 应用名称 -->
+  <context-param>
+ 	 <param-name>applicationName</param-name>
+ 	 <param-value>survey</param-value>
+  </context-param>
+  <!-- 在web.xml中加载指定的xml文件 -->
+  <context-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>
+		classpath*:applicationContext*.xml,
+		/WEB-INF/applicationContext*.xml
+	</param-value>
+  </context-param>
+  
+  <!-- ==================================================== 过滤器 ==================================================== -->
+  <!-- 配置Spring MVC DispatcherServlet -->
+	<servlet>
+		<servlet-name>SpringMVC</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 初始化参数 -->
+		<init-param>
+			<!-- 加载SpringMVC的xml到 spring的上下文容器中 -->
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+				/WEB-INF/applicationContext-mvc.xml
+			</param-value>
+		</init-param>
+		<!-- 表示启动时初始化该servlet -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<!-- 配置DispatcherServlet所需要拦截的 url 拦截所有请求 -->
+	<servlet-mapping>
+		<servlet-name>SpringMVC</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+  
+  <!-- 字符过滤器  主要是确保springmvc标签的东西-->
+  <filter>
+	<filter-name>encodingFilter</filter-name>
+	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	<init-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+	</init-param>
+	<init-param>
+	    <param-name>forceEncoding</param-name>
+	    <param-value>true</param-value>
+	</init-param>
+  </filter>
+  <filter-mapping>
+	<filter-name>encodingFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- session存活时间 -->
+  <session-config>
+	<session-timeout>100</session-timeout>
+  </session-config>
+  
 </web-app>
