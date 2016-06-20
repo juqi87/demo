@@ -31,7 +31,6 @@
 	</param-value>
   </context-param>
   
-  <!-- ==================================================== 过滤器 ==================================================== -->
   <!-- 配置Spring MVC DispatcherServlet -->
 	<servlet>
 		<servlet-name>SpringMVC</servlet-name>
@@ -75,5 +74,15 @@
   <session-config>
 	<session-timeout>100</session-timeout>
   </session-config>
+  
+  <!-- 错误页面 -->
+  <error-page>
+	<error-code>404</error-code>
+	<location>/error/404/404.ftl</location>
+  </error-page>
+  <error-page>
+	<error-code>500</error-code>
+	<location>/error/500/500.ftl</location>
+  </error-page>
   
 </web-app>
