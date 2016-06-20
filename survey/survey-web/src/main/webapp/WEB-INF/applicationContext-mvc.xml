@@ -14,8 +14,7 @@
 	<!-- 通过component-scan让Spring扫描com.jq.survey.web下的所有的类，让Spring的代码注解生效 -->
 	<context:component-scan base-package="com.jq.survey.web"></context:component-scan>
 	
-	<!-- 默认的注解映射的支持 -->  
-	<mvc:annotation-driven />
+	  
 	<!-- 如果当前路径是/index 则交给相应的视图解析器直接解析为视图 -->
 	<mvc:view-controller path="/index" view-name="index" />
 	<!-- 访问静态资源  匹配/static/**的URL被当做静态资源,由Spring读出到内存中再响应http --> 
@@ -23,6 +22,9 @@
 		  而不经过本地缓存版本的校验。这对于需要确认认证应用很有用(可以和public结合使用),
 		  或者严格要求使用最新数据的应用（不惜牺牲使用缓存的所有好处）-->
 	<mvc:resources mapping="/static/**" location="/static/" cache-period="31556926"/>
+	
+	<!-- 默认的注解映射的支持 
+	<mvc:annotation-driven />-->
 	<!-- 处理在类级别上的@RequestMapping注解 -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 		<property name="interceptors">
@@ -32,9 +34,27 @@
 			</list>
 		</property>
 	</bean>
-	
 	<!-- 完成请求和注解POJO的映射 -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">  
+	    <property name="messageConverters">    
+	        <list>    
+	            <ref bean="byteArray_hmc" />    
+	            <ref bean="string_hmc" />    
+	            <ref bean="resource_hmc" />    
+	            <ref bean="source_hmc" />    
+	            <ref bean="xmlAwareForm_hmc" />    
+	            <ref bean="jaxb2RootElement_hmc" />    
+	            <!-- <ref bean="jackson_hmc" />   -->  
+	        </list>    
+	    </property>    
+	</bean>
+	<bean id="byteArray_hmc" class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+	<bean id="string_hmc" class="org.springframework.http.converter.StringHttpMessageConverter" />
+	<bean id="resource_hmc" class="org.springframework.http.converter.ResourceHttpMessageConverter" />
+	<bean id="source_hmc" class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
+	<bean id="xmlAwareForm_hmc" class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter" />  
+	<bean id="jaxb2RootElement_hmc" class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter" />  
+	<!-- <bean id="jackson_hmc" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" /> -->
 	
 	
 	<!-- InternalResourceViewResolver 国际化视图解析器 -->
@@ -61,7 +81,6 @@
 	    <property name="location" value="/WEB-INF/freemarker.properties" />
 	</bean>
 	<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
-	
 	<!-- FreeMarkerViewResolver FreeMarker视图解析器 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name="prefix" value="/" />

@@ -22,7 +22,7 @@ public class TestController {
 		//將數據添加到視圖數據容器中
 		model.addAttribute("word0",word0);
 		model.addAttribute("word1",word1);
-		throw new RuntimeException("我是异常");
-//		return "/view/test/test";
+//		throw new RuntimeException("我是异常");
+		return "/view/test/test";
 	}
 }
