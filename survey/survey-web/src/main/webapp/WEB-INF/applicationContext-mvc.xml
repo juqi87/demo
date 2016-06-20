@@ -44,7 +44,7 @@
 	            <ref bean="source_hmc" />    
 	            <ref bean="xmlAwareForm_hmc" />    
 	            <ref bean="jaxb2RootElement_hmc" />    
-	            <!-- <ref bean="jackson_hmc" />   -->  
+	            <ref bean="jackson_hmc" />
 	        </list>    
 	    </property>    
 	</bean>
@@ -54,7 +54,7 @@
 	<bean id="source_hmc" class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
 	<bean id="xmlAwareForm_hmc" class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter" />  
 	<bean id="jaxb2RootElement_hmc" class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter" />  
-	<!-- <bean id="jackson_hmc" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" /> -->
+	<bean id="jackson_hmc" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 	
 	
 	<!-- InternalResourceViewResolver 国际化视图解析器 -->
