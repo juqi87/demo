@@ -8,7 +8,6 @@
     </head>
     <body>
         <h2>SiteMesh装饰header</h2>  
-        <decorator: body /> 
         <hr />
         <h2>SiteMesh装饰footer</h2>  
     </body>
