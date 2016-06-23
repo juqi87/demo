@@ -19,7 +19,6 @@ public class TestController {
 		log.info("testetsttetstetstteest============================="+path);
 		String word0 = "Hello ";
 		String word1 = "World!2222222";
-		//將數據添加到視圖數據容器中
 		model.addAttribute("word0",word0);
 		model.addAttribute("word1",word1);
 //		throw new RuntimeException("我是异常");

@@ -71,6 +71,13 @@
 		<artifactId>cglib-nodep</artifactId>
 		<version>2.2</version>
 	</dependency>
+	
+	<!-- 视图装饰器 -->
+	<dependency>
+		<groupId>opensymphony</groupId>
+		<artifactId>sitemesh</artifactId>
+		<version>2.4.2</version>
+	</dependency>
   	
   	<!-- 导入一些开源的工具包,用于处理Java基本对象的工具包,可简化程序中种的很多写法 -->
   	<dependency>

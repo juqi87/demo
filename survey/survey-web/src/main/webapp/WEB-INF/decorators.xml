@@ -1,0 +1,15 @@
+<decorators defaultdir="/decorators">
+	<!-- 命名一个名为main的装饰器,该装饰器默认装饰web应用根路径下所有页面 
+		 (/decorators可以缺省sitemesh默认会去/decorators/这个文件夹里去寻找) -->
+	<decorator name="main" page="/decorators/main.ftl">
+		<pattern>/*</pattern>
+	</decorator>
+	
+	<!-- 此处用来定义不需要装饰的页面 --> 
+	<excludes>
+		<pattern>/statics/**</pattern>
+    	<pattern>/images/**</pattern>
+    	<pattern>/scripts/**</pattern>
+    </excludes>
+	
+</decorators>

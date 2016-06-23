@@ -7,7 +7,7 @@
   <!-- 没什么意思,一段描述性的文字,修改对项目无影响 -->
   <display-name>survey</display-name>
   
-  <!--监听spring上下文容器 -->
+  <!-- 监听spring上下文容器 -->
   <listener>
   	<!-- 默认监听default: /WEB-INF/applicationContext.xml -->
   	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -49,7 +49,7 @@
 	<!-- 配置DispatcherServlet所需要拦截的 url 拦截所有请求 -->
 	<servlet-mapping>
 		<servlet-name>SpringMVC</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
   
   <!-- 字符过滤器  主要是确保springmvc标签的东西-->
@@ -69,6 +69,36 @@
 	<filter-name>encodingFilter</filter-name>
 	<url-pattern>/*</url-pattern>
   </filter-mapping>
+  
+  <!-- 配置sitemesh视图装饰器 -->
+  <filter>
+    <filter-name>sitemesh</filter-name>
+    <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+  </filter>
+  <filter-mapping>
+	<filter-name>sitemesh</filter-name>
+	<url-pattern>/*</url-pattern>
+	<dispatcher>REQUEST</dispatcher>
+	<dispatcher>FORWARD</dispatcher>
+  </filter-mapping>
+  
+  <servlet>
+    <servlet-name>sitemesh-freemarker</servlet-name>
+    <servlet-class>com.opensymphony.module.sitemesh.freemarker.FreemarkerDecoratorServlet</servlet-class>
+    <init-param>
+        <param-name>TemplatePath</param-name>
+        <param-value>/</param-value>
+    </init-param>
+    <init-param>
+        <param-name>default_encoding</param-name>
+        <param-value>UTF-8</param-value>
+    </init-param>
+    <!-- <load-on-startup>1</load-on-startup> -->
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sitemesh-freemarker</servlet-name>
+    <url-pattern>*.ftl</url-pattern>
+  </servlet-mapping>
   
   <!-- session存活时间 -->
   <session-config>
