@@ -17,6 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.jq.survey.utils.common.Constants;
 import com.jq.survey.utils.wx.SecurityUtil;
 
+/**
+ * 
+ * 
+ * @author juqi
+ * @version $Id: CheckController.java, v 0.1 2016年6月24日 下午5:03:58 juqi Exp $
+ */
 @Controller
 public class CheckController implements Serializable {
 
