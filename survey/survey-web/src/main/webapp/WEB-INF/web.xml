@@ -27,6 +27,7 @@
 	<param-name>contextConfigLocation</param-name>
 	<param-value>
 		classpath*:applicationContext*.xml,
+		classpath*:applicationContext-dao.xml,
 		/WEB-INF/applicationContext*.xml
 	</param-value>
   </context-param>

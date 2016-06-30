@@ -1,3 +1,33 @@
+-- 菜单 --
+create table MENU (
+	MENU_ID				int(6),
+	MENU_NAME			varchar(20),
+	MENU_LEVEL			int(1),
+	PARENT_ID			int(6),
+	SERIAL_NUM			int(2),
+	stat				char(1),
+	create_time			datetime default now(),
+	update_time			timestamp
+)ENGINE=INNODB;
+
+show tables;
+drop table test;
+create table test(
+	id	int(15) primary key auto_increment,
+	a	datetime,
+	b 	timestamp
+);
+select * from test;
+insert test (a, b) value(CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+update test set id=3  where id=1;
+
+create table DB_TEST(
+	stat varchar(5)
+);
+insert DB_TEST value('DB_OK');
+select * from db_test;
+
+
 -- 问卷创建者表 --
 drop table USER;
 create table USER
@@ -162,15 +192,7 @@ create table ANSWER
 
 
 
-create table MENU (
-	MENU_ID				int(6),
-	MENU_NAME			varchar(20),
-	MENU_LEVEL			int(1),
-	PARENT_ID			int(6),
-	stat				char(1),
-	create_time			varchar()
-	update_time
-)ENGINE=INNODB;
+
 
 
 

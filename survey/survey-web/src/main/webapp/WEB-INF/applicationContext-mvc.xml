@@ -23,8 +23,8 @@
 		  或者严格要求使用最新数据的应用（不惜牺牲使用缓存的所有好处）-->
 	<mvc:resources mapping="/static/**" location="/static/" cache-period="31556926"/>
 	
-	<!-- 默认的注解映射的支持 
-	<mvc:annotation-driven />-->
+	<!-- 默认的注解映射的支持 -->
+	<mvc:annotation-driven />
 	<!-- 处理在类级别上的@RequestMapping注解 -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 		<property name="interceptors">
