@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+						   http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+						   http://www.springframework.org/schema/context 
+						   http://www.springframework.org/schema/context/spring-context-2.5.xsd" >
+	<!-- Activates scanning of @Autowired 
+    <context:annotation-config/>-->
+    <context:component-scan base-package="com.jq.survey.dao"/> 
+	
+	<!-- define the SqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+		<!-- <property name="configLocation" value="classpath:mybatis-config.xml" /> -->
+        <property name="typeAliasesPackage" value="com.jq.survey.dao.entity,com.jq.survey.dao.entity.ext" />
+     	<!-- <property name="plugins">
+	 		<list>
+		  		<ref bean="mybatisCommonInterceptor"/>
+		  	</list>
+	 	</property> -->
+    </bean>
+    
+    <!-- spring整合jdbc 1 获得数据源（管理连接池对象） 4个参数： driverClass, ur, nam, pwd 指定连接的数据库
+		 org.apache.commons.dbcp.BasicDataSource   org.springframework.jdbc.datasource.DriverManagerDataSource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${className}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+		<!--initialSize:连接池创建的时候，初始化连接数量，默认0 -->
+		<property name="initialSize" value="10"></property>
+		<!--maxWait:如果没有连接，最长的等待时间 ，单位毫秒数  -->
+		<property name="maxWait" value="2000"></property>
+		<!-- maxActive:连接池在同一时间内分配最大的使用连接数量 -->
+		<property name="maxActive" value="30"></property>
+	</bean>
+	
+	<context:property-placeholder location="classpath:db.properties" />
+    
+    <!-- 自动注册mybatis mapper bean.
+    	  当你的mapper bean存在于多个目录下时，basePackage的值可以配置成多个目录，中间用英文逗号隔开即可. 
+    	 注意mapper.xml的文件名需要与接口的名字一致 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.jq.survey.dao.mapper" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+	
+</beans>
