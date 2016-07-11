@@ -7,9 +7,10 @@
 	
 	<!-- 此处用来定义不需要装饰的页面 --> 
 	<excludes>
-		<pattern>/statics/**</pattern>
+		<pattern>/static/**</pattern>
     	<pattern>/images/**</pattern>
-    	<pattern>/scripts/**</pattern>
+    	<pattern>/script/**</pattern>
+    	<pattern>/test/**</pattern>
     </excludes>
 	
 </decorators>

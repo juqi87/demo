@@ -18,6 +18,7 @@ import com.jq.survey.web.controller.paper.PaperController;
  * @version $Id: TestController.java, v 0.1 2016年6月30日 下午3:17:08 juqi Exp $
  */
 @Controller
+@RequestMapping("/test")
 public class TestController {
 	
 	private Logger log = Logger.getLogger(PaperController.class);
@@ -26,11 +27,13 @@ public class TestController {
     TestDBMapper testDBMapper;
 	
 	@RequestMapping("/testDB")
-    public String index2(ModelMap model, HttpServletRequest request) {
+    public String index1(ModelMap model, HttpServletRequest request) {
 		String dbstat = testDBMapper.testDB();
 		log.info(dbstat);
 		model.put("DBStat", dbstat);
         return "/testDB";
     }
+	
+
 	
 }

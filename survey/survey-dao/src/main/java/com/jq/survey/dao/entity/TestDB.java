@@ -1,9 +1,7 @@
 package com.jq.survey.dao.entity;
 
-import java.io.Serializable;
-import java.util.Date;
 
-public class TestDB implements Serializable{
+public class TestDB extends AbstractDO {
 
 	/**  */
 	private static final long serialVersionUID = -2036305952619307339L;
@@ -18,9 +16,5 @@ public class TestDB implements Serializable{
 		this.stat = stat;
 	}
 
-	@Override
-	public String toString() {
-		return "TestDB [stat=" + stat + "]";
-	}
 
 }
