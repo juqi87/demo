@@ -1,5 +1,8 @@
 package com.jq.survey.dao.mapper;
 
+import java.util.List;
+
+import com.jq.survey.dao.entity.UserInfoDO;
 
 /**
  * 
@@ -9,6 +12,6 @@ package com.jq.survey.dao.mapper;
  */
 public interface UserInfoMapper {
 
-	
+	List<UserInfoDO> selectByCondition(UserInfoDO condition);
 	
 }
