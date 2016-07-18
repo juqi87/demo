@@ -31,6 +31,7 @@
 			<list>
 				<!-- 多个拦截器顺序执行 -->
 				<bean class="com.jq.survey.web.interceptor.LoginInterceptor"></bean>
+				<bean class="com.jq.survey.web.interceptor.AuthInterceptor"></bean>
 			</list>
 		</property>
 	</bean>

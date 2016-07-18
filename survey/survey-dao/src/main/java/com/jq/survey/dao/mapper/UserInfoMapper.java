@@ -14,4 +14,6 @@ public interface UserInfoMapper {
 
 	List<UserInfoDO> selectByCondition(UserInfoDO condition);
 	
+	int insert(UserInfoDO userInfoDO);
+	
 }

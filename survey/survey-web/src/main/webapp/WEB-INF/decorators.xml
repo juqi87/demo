@@ -5,12 +5,16 @@
 		<pattern>/*</pattern>
 	</decorator>
 	
+	
 	<!-- 此处用来定义不需要装饰的页面 --> 
 	<excludes>
 		<pattern>/static/**</pattern>
     	<pattern>/images/**</pattern>
     	<pattern>/script/**</pattern>
     	<pattern>/test/**</pattern>
+    	<pattern>/login/**</pattern>
+    	<pattern>/register/**</pattern>
+    	<pattern>/ajax/**</pattern>
     </excludes>
 	
 </decorators>

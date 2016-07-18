@@ -22,5 +22,15 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.jq</groupId>
+      <artifactId>survey-dao</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.jq</groupId>
+      <artifactId>survey-utils</artifactId>
+      <version>${project.version}</version>
+    </dependency>
   </dependencies>
 </project>

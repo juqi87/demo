@@ -24,19 +24,14 @@ public class Sign {
                   "&url=" + url;
         System.out.println(string1);
 
-        try
-        {
+        try{
             MessageDigest crypt = MessageDigest.getInstance("SHA-1");
             crypt.reset();
             crypt.update(string1.getBytes("UTF-8"));
             signature = byteToHex(crypt.digest());
-        }
-        catch (NoSuchAlgorithmException e)
-        {
+        }catch (NoSuchAlgorithmException e){
             e.printStackTrace();
-        }
-        catch (UnsupportedEncodingException e)
-        {
+        }catch (UnsupportedEncodingException e){
             e.printStackTrace();
         }
 
@@ -51,8 +46,7 @@ public class Sign {
 
     private static String byteToHex(final byte[] hash) {
         Formatter formatter = new Formatter();
-        for (byte b : hash)
-        {
+        for (byte b : hash){
             formatter.format("%02x", b);
         }
         String result = formatter.toString();
@@ -68,14 +62,4 @@ public class Sign {
         return Long.toString(System.currentTimeMillis() / 1000);
     }
     
-    public static void main(String[] args) {
-        String jsapi_ticket = "sM4AOVdWfPE4DxkXGEs8VNYzTrQZpH2vkQZMhE0GgFcvF35rzSiDVlFlJw-IRv6vkoFRR1mboV1SXC5DDA5MEA";
-
-        // 注意 URL 一定要动态获取，不能 hardcode
-        String url = "http://example.com";
-        Map<String, String> ret = sign(jsapi_ticket, url);
-        for (Map.Entry entry : ret.entrySet()) {
-            System.out.println(entry.getKey() + ", " + entry.getValue());
-        }
-    };
 }

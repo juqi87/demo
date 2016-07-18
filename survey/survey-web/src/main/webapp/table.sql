@@ -6,11 +6,11 @@ create table USER_INFO
 	LOGIN_NAME			varchar(50) not null,
 	REAL_NAME			varchar(20) not null,
 	PASSWORD			varchar(100),
-	TEL					int(11),
+	TEL					varchar(11),
 	EMAIL				varchar(200) not null,
 	DEPT				varchar(100),
 	STAT				char(1) default 'C',
-	role_id				int(4),
+	role_id				char(4),
 	CREATE_TIME			datetime default now(),
 	UPDATE_TIME			timestamp
 )ENGINE=innodb;
@@ -30,15 +30,15 @@ ALTER TABLE `user_info` ADD UNIQUE INDEX `USER_ID_UN0` (`USER_ID`) USING BTREE ;
 --角色表
 drop table ROLE_INFO;
 create table ROLE_INFO(
-	ROLE_ID			int(4) primary key,
+	ROLE_ID			char(4) primary key,
 	ROLE_NAME		varchar(50) 	not null,
 	CREATE_TIME			datetime default now(),
 	UPDATE_TIME			timestamp
 )ENGINE=innodb;
 
 create table ROLE_MENU(
-	ROLE_ID		int(4) not null,
-	MENU_ID		int(6) not null,
+	ROLE_ID		char(4) not null,
+	MENU_ID		char(6) not null,
 	STAT		char(1) default 'C',
 	CREATE_TIME			datetime default now(),
 	UPDATE_TIME			timestamp,
@@ -48,7 +48,7 @@ create table ROLE_MENU(
 -- 菜单 --
 drop table menu;
 create table MENU_INFO (
-	MENU_ID				int(6),
+	MENU_ID				char(6),
 	MENU_NAME			varchar(20),
 	MENU_LEVEL			int(1),
 	MODULE_ICON			varchar(25),

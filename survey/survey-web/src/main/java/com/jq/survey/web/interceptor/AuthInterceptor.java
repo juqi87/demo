@@ -7,31 +7,18 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-/**
- * 登陆拦截器
- * @author juqi
- * @version $Id: LoginInterceptor.java, v 0.1 2016年6月16日 下午5:05:15 juqi Exp $
- */
-public class LoginInterceptor implements HandlerInterceptor {
+public class AuthInterceptor implements HandlerInterceptor {
 
-	private Logger log = Logger.getLogger(LoginInterceptor.class);
+	private Logger log = Logger.getLogger(AuthInterceptor.class);
 	
 	/**
-	 * 在业务处理器处理请求之前被调用 
-	 * 如果返回false  
-	 *    从当前的拦截器往回执行所有拦截器的afterCompletion(),再退出拦截器链 
-	 * 
-	 * 如果返回true 
-     *    执行下一个拦截器,直到所有的拦截器都执行完毕 
-     *    再执行被拦截的Controller 
-     *    然后进入拦截器链, 
-     *    从最后一个拦截器往回执行所有的postHandle() 
-     *    接着再从最后一个拦截器往回执行所有的afterCompletion() 
+	 * 获取请求路径,判断该用户是否有请求权限
+	 * @see org.springframework.web.servlet.HandlerInterceptor#preHandle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object)
 	 */
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) 
 			throws Exception {
-		log.info("登陆拦截器,执行请求之前");
+		log.info("权限拦截器,执行请求之前");
 		// TODO Auto-generated method stub
 		return true;
 	}
@@ -43,7 +30,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) 
 			throws Exception {
-		log.info("登陆拦截器,执行请求之后,视图生成之前");
+		log.info("权限拦截器,执行请求之后,视图生成之前");
 		// TODO Auto-generated method stub
 		
 	}
@@ -55,9 +42,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) 
 			throws Exception {
-		log.info("登陆拦截器,执行请求之后,视图生成之后"); 
+		log.info("权限拦截器,执行请求之后,视图生成之后"); 
 		// TODO Auto-generated method stub
 		
 	}
-
 }

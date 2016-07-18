@@ -1,5 +1,9 @@
 package com.jq.survey.dao.mapper;
 
+import java.util.List;
+
+import com.jq.survey.dao.entity.RoleMenuDO;
+
 /**
  * 
  * 
@@ -8,5 +12,6 @@ package com.jq.survey.dao.mapper;
  */
 public interface RoleMenuMapper {
 
+	List<RoleMenuDO> selectByCondition(RoleMenuDO condition);
 	
 }

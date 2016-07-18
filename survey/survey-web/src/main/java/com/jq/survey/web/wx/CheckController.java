@@ -14,7 +14,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.jq.survey.utils.common.Constants;
+import com.jq.survey.utils.constant.Constants;
 import com.jq.survey.utils.wx.SecurityUtil;
 
 /**

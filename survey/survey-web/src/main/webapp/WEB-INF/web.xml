@@ -28,6 +28,7 @@
 	<param-value>
 		classpath*:applicationContext*.xml,
 		classpath*:applicationContext-dao.xml,
+		classpath*:applicationContext-service.xml,
 		/WEB-INF/applicationContext*.xml
 	</param-value>
   </context-param>

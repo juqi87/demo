@@ -1,5 +1,9 @@
 package com.jq.survey.dao.mapper;
 
+import java.util.List;
+
+import com.jq.survey.dao.entity.RoleInfoDO;
+
 /**
  * 
  * 
@@ -8,5 +12,5 @@ package com.jq.survey.dao.mapper;
  */
 public interface RoleInfoMapper {
 
-	
+	List<RoleInfoDO> selectByCondition(RoleInfoDO condition);
 }
