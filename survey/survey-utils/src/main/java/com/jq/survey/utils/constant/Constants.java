@@ -6,6 +6,8 @@ package com.jq.survey.utils.constant;
  * @version $Id: Constants.java, v 0.1 2016年6月23日 下午2:47:48 juqi Exp $
  */
 public class Constants {
+	
+	public static final String REGISTER_ROLE_ID = "aaa";
 
 	public static final String TOKEN="juqi20160623";
 	public static final String APPID = "wx3f74f63e3731d7f2";

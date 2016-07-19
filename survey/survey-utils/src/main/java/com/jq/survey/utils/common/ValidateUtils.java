@@ -217,8 +217,8 @@ public abstract class ValidateUtils {
      * @param phoneNum
      * @return
      */
-    public static final boolean isPhoneNum(String phoneNum){
-        return isMatch(phoneNum,"^((\\(\\d{2,3}\\))|(\\d{3}\\-))?(\\(0\\d{2,3}\\)|0\\d{2,3}-)?[1-9]\\d{6,7}(\\-\\d{1,4})?$");
+    public static final boolean isTelphoneNum(String telphoneNum){
+        return isMatch(telphoneNum,"^1[3|4|5|7|8][0-9]{9}$");
     }
     
     /**

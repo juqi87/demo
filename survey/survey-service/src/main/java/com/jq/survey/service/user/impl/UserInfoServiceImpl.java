@@ -40,6 +40,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public int registerUser(UserInfoDO userInfoDO) {
 		log.info("新增商户"+userInfoDO);
 		HandleException selfException = null;
+		String userId = "";
 		int resp = userInfoMapper.insert(userInfoDO);
 		if(resp != 1){
 			log.info("新增记录失败"+userInfoDO);

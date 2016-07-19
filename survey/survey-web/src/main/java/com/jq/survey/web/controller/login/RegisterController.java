@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.jq.survey.dao.entity.UserInfoDO;
+import com.jq.survey.dao.mapper.SequenceMapper;
 import com.jq.survey.service.user.UserInfoService;
 import com.jq.survey.utils.common.EncryptUtils;
 import com.jq.survey.utils.common.ValidateUtils;
+import com.jq.survey.utils.constant.Constants;
 import com.jq.survey.utils.enums.RespCodeEnum;
+import com.jq.survey.utils.enums.StatEnum;
 import com.jq.survey.utils.exception.HandleException;
 import com.jq.survey.web.controller.common.BaseController;
 import com.jq.survey.web.vo.UserInfoVO;
@@ -37,6 +40,8 @@ public class RegisterController extends BaseController {
 	
 	@Resource
 	private UserInfoService userInfoService;
+	@Resource
+	private SequenceMapper sequenceMapper;
 	
 	@RequestMapping("/goto")
 	public String register(Model model){
@@ -55,10 +60,14 @@ public class RegisterController extends BaseController {
 			BeanUtils.copyProperties(userInfoVO, userInfoDO);
 			String encodePwd = EncryptUtils.encodePassword(userInfoVO.getPassword());
 			userInfoDO.setPassword(encodePwd);
+			userInfoDO.setUserId(sequenceMapper.getUserSeq());
+			userInfoDO.setRoleId(Constants.REGISTER_ROLE_ID);
+			userInfoDO.setStat(StatEnum.NORMAL.getCode());
 			int resp = userInfoService.registerUser(userInfoDO);
 			if(resp != 1){
 				throw new RuntimeException("新增记录失败");
 			}
+			log.info("新用户信息"+userInfoDO);
 		}catch(HandleException he){
 			log.error(he.getErrorDesc(), he);
 			model.put("message", he.getErrorDesc());
@@ -70,6 +79,7 @@ public class RegisterController extends BaseController {
 			model.put("userInfoVO", userInfoVO);
 			return "/error/500/500";
 		}
+		log.info("注册新用户成功");
 		return "/view/login/register";
 	}
 	
@@ -86,28 +96,28 @@ public class RegisterController extends BaseController {
 			selfException = new HandleException();
 			selfException.setErrorCode(RespCodeEnum.EMAIL_ILLEGAL.getCode());
 			selfException.setErrorDesc(RespCodeEnum.EMAIL_ILLEGAL.getDesc());
-			throw selfException; 
+			throw selfException;
 		}
 		if(!ValidateUtils.ischeckParam(true, false, vo.getLoginName(), 16)){
 			log.info(RespCodeEnum.LOGIN_NAME_ILLEGAL.getDesc());
 			selfException = new HandleException();
 			selfException.setErrorCode(RespCodeEnum.LOGIN_NAME_ILLEGAL.getCode());
 			selfException.setErrorDesc(RespCodeEnum.LOGIN_NAME_ILLEGAL.getDesc());
-			throw selfException; 
+			throw selfException;
 		}
-		if(StringUtils.isBlank(vo.getTel()) || !ValidateUtils.isPhoneNum(vo.getTel())){
+		if(StringUtils.isBlank(vo.getTel()) || !ValidateUtils.isTelphoneNum(vo.getTel())){
 			log.info(RespCodeEnum.TEL_NAME_ILLEGAL.getDesc());
 			selfException = new HandleException();
 			selfException.setErrorCode(RespCodeEnum.TEL_NAME_ILLEGAL.getCode());
 			selfException.setErrorDesc(RespCodeEnum.TEL_NAME_ILLEGAL.getDesc());
-			throw selfException; 
+			throw selfException;
 		}
-		if(ValidateUtils.ischeckParam(true, false, vo.getPassword(), 100)){
+		if(!ValidateUtils.ischeckParam(true, false, vo.getPassword(), 100)){
 			log.info(RespCodeEnum.PASSWORD_ILLEGAL.getDesc());
 			selfException = new HandleException();
 			selfException.setErrorCode(RespCodeEnum.PASSWORD_ILLEGAL.getCode());
 			selfException.setErrorDesc(RespCodeEnum.PASSWORD_ILLEGAL.getDesc());
-			throw selfException; 
+			throw selfException;
 		}
 	}
 

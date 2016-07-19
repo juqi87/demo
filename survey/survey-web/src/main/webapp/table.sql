@@ -16,6 +16,45 @@ create table USER_INFO
 )ENGINE=innodb;
 ALTER TABLE `user_info` ADD UNIQUE INDEX `USER_ID_UN0` (`USER_ID`) USING BTREE ;
 
+DROP TABLE
+    IF EXISTS sequence;
+CREATE TABLE sequence
+(
+    name VARCHAR(50) NOT NULL,
+    current_value BIGINT NOT NULL,
+    increment INT NOT NULL DEFAULT 1,
+    PRIMARY KEY (name)
+)ENGINE=InnoDB;
+insert sequence (name, current_value, increment) values ('user_seq', 100000000, 1);
+
+
+select nextval('user_id_seq');
+
+DROP FUNCTION IF EXISTS seq;  
+DELIMITER $$  
+CREATE FUNCTION seq(seq_name char (20)) returns BIGINT
+BEGIN
+ UPDATE sequence SET current_value=last_insert_id(current_value+increment) WHERE name=seq_name;
+ RETURN last_insert_id();
+END $$
+DELIMITER;
+
+DROP FUNCTION IF EXISTS nextval;  
+DELIMITER $$  
+CREATE FUNCTION nextval(seq_name char (20)) returns BIGINT
+BEGIN
+ UPDATE sequence SET current_value=last_insert_id(current_value+increment) WHERE name=seq_name;
+ RETURN last_insert_id();
+END $$
+DELIMITER;
+
+
+
+
+
+
+
+
 -- 该套系统按照模块来划分权限()主要考虑该套系统作为客户端的存在故而按模块来划分权限,若涉及后台控台可按照菜单来划分权限 
 --create table module_info(
 --	module_id 			number(4) constraint module_info_id_pk primary key,
