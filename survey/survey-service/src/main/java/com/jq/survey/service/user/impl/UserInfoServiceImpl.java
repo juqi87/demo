@@ -59,7 +59,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 		HandleException selfException = null;
 		int resp = userInfoMapper.insert(userInfoDO);
 		if(resp != 1){
-			log.info("新增记录失败"+userInfoDO);
+			log.warn("新增记录失败"+userInfoDO);
 			selfException = new HandleException();
 			selfException.setErrorCode(RespCodeEnum.SYSTEM_ERROR.getCode());
 			selfException.setErrorCode(RespCodeEnum.SYSTEM_ERROR.getDesc());
