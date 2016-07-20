@@ -51,11 +51,12 @@ public class RegisterController extends BaseController {
 	
 	@RequestMapping(value="/doRegister",method = RequestMethod.POST)
 	public String doRegister(ModelMap model, UserInfoVO userInfoVO){
-		log.info("进行注册操作");
+		log.info("进行注册操作"+userInfoVO);
 		try{
 			//1.校验前台参数
 			verifiyRegister(userInfoVO);
 			
+			//2.入库
 			UserInfoDO userInfoDO = new UserInfoDO();
 			BeanUtils.copyProperties(userInfoVO, userInfoDO);
 			String encodePwd = EncryptUtils.encodePassword(userInfoVO.getPassword());
@@ -80,12 +81,11 @@ public class RegisterController extends BaseController {
 			return "/error/500/500";
 		}
 		log.info("注册新用户成功");
-		return "/view/login/register";
+		return "/view/login/login";
 	}
 	
 	/**
 	 * 校验注册参数
-	 * 
 	 * @param vo
 	 */
 	private void verifiyRegister(UserInfoVO vo){

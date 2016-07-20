@@ -1,7 +1,10 @@
 package com.jq.survey.service.user.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -30,17 +33,30 @@ public class UserInfoServiceImpl implements UserInfoService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public UserInfoDO queryUserInfoBy() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	@Override
+	public List<UserInfoDO> queryUserInfoBy(UserInfoDO condition) {
+		if(condition == null){
+			return null;
+		}
+		return userInfoMapper.selectByCondition(condition);
+	}
+	
+	@Override
+	public UserInfoDO queryUserInfoByEmail(String email){
+		UserInfoDO condition = new UserInfoDO();
+		condition.setEmail(email);
+		List<UserInfoDO> userInfoDOs = queryUserInfoBy(condition);
+		if(CollectionUtils.isEmpty(userInfoDOs)){
+			return null;
+		}
+		return userInfoDOs.get(0);
 	}
 
 	@Override
 	public int registerUser(UserInfoDO userInfoDO) {
 		log.info("新增商户"+userInfoDO);
 		HandleException selfException = null;
-		String userId = "";
 		int resp = userInfoMapper.insert(userInfoDO);
 		if(resp != 1){
 			log.info("新增记录失败"+userInfoDO);

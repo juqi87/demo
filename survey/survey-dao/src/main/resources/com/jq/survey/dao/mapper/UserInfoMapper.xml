@@ -52,6 +52,9 @@
 			<if test="roleId != null and roleId != ''">  
 	            <![CDATA[ and ROLE_ID =  #{roleId}]]>
 			</if>
+			<if test="email != null and email != ''">  
+	            <![CDATA[ and EMAIL =  #{email}]]>
+			</if>
 	</select>
 	
 	<insert id="insert" parameterType="com.jq.survey.dao.entity.UserInfoDO">

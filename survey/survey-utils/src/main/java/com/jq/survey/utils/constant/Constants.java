@@ -7,6 +7,7 @@ package com.jq.survey.utils.constant;
  */
 public class Constants {
 	
+	public static final String CHKCODE = "SESS_CAPTCHA";
 	public static final String REGISTER_ROLE_ID = "aaa";
 
 	public static final String TOKEN="juqi20160623";

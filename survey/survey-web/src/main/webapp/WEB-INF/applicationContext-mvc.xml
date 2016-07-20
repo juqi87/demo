@@ -16,7 +16,7 @@
 	
 	  
 	<!-- 如果当前路径是/index 则交给相应的视图解析器直接解析为视图 -->
-	<mvc:view-controller path="/index" view-name="index" />
+	<mvc:view-controller path="/index" view-name="/view/login/login" />
 	<!-- 访问静态资源  匹配/static/**的URL被当做静态资源,由Spring读出到内存中再响应http --> 
 	<!-- cache-period可以使得静态资源进行web cache 强制每次请求直接发送给源服务器，
 		  而不经过本地缓存版本的校验。这对于需要确认认证应用很有用(可以和public结合使用),

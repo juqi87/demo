@@ -12,11 +12,16 @@ public enum RespCodeEnum {
 	FAIL("999", "失败"),
 	SYSTEM_ERROR("XXX", "系统错误"),
 	
+	USER_INFO_NOT_EXIST("001", "用户不存在"),
+	PASSWORD_ERROR("001", "密码错误"),
+	
 	REQ_DATA_ILLEGAL("100", "请求参数不合法"),
 	LOGIN_NAME_ILLEGAL("101", "账户名为空或格式不正确"),
 	PASSWORD_ILLEGAL("102", "密码为空或格式不正确"),
 	TEL_NAME_ILLEGAL("103", "手机号为空或格式不正确"),
-	EMAIL_ILLEGAL("104", "邮件为空或格式不正确");
+	EMAIL_ILLEGAL("104", "邮件为空或格式不正确"),
+	CHK_CODE_NULL("105", "验证码为空"),
+	CHK_CODE_ERROR("106", "验证码错误");
 	
 	public static RespCodeEnum valueByCode(String code) {
         for (RespCodeEnum respCodeEnum : RespCodeEnum.values()) {

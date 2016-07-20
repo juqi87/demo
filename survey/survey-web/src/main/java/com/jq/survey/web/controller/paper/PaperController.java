@@ -8,12 +8,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller
-public class PaperController {
+import com.jq.survey.web.controller.common.BaseController;
 
+@Controller
+@RequestMapping("/paper")
+public class PaperController extends BaseController {
+
+	/**  */
+	private static final long serialVersionUID = -6926183759648695625L;
+	
 	private Logger log = Logger.getLogger(PaperController.class);
 	
-	@RequestMapping(value="test.htm", method = RequestMethod.GET)
+	@RequestMapping(value="/test.htm", method = RequestMethod.GET)
 	public String dataQuestion(String path, Model model, HttpServletRequest request){
 		System.out.println(1111122221);
 		log.info("testetsttetstetstteest============================="+path);

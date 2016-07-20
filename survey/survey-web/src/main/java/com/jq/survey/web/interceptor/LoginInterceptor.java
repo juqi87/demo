@@ -2,10 +2,13 @@ package com.jq.survey.web.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.jq.survey.web.vo.UserInfoVO;
 
 /**
  * 登陆拦截器
@@ -15,6 +18,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginInterceptor implements HandlerInterceptor {
 
 	private Logger log = Logger.getLogger(LoginInterceptor.class);
+	
+	//不做拦截的请求
+	private static final String[] IGNORE_REQUEST = {".act"};
+	//不做拦截的路径
+	private static final String[] IGNORE_URL = {"/login"};
+	//被拦截后跳转的路径
+	private static final String LOGIN_URL = "../login/goto";
 	
 	/**
 	 * 在业务处理器处理请求之前被调用 
@@ -28,11 +38,25 @@ public class LoginInterceptor implements HandlerInterceptor {
      *    从最后一个拦截器往回执行所有的postHandle() 
      *    接着再从最后一个拦截器往回执行所有的afterCompletion() 
 	 */
+	@SuppressWarnings("unused")
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) 
 			throws Exception {
 		log.info("登陆拦截器,执行请求之前");
-		// TODO Auto-generated method stub
+		if(isPlainResource(request)){
+			return true;
+		}
+		HttpSession session = request.getSession();
+		Object obj = session.getAttribute("userInfo");
+		if(obj == null){
+			request.getRequestDispatcher(LOGIN_URL).forward(request, response);
+			return false;
+		}
+		UserInfoVO userInfo = (UserInfoVO) obj;
+		if(userInfo == null){
+			request.getRequestDispatcher(LOGIN_URL).forward(request, response);
+			return false;
+		}
 		return true;
 	}
 
@@ -58,6 +82,22 @@ public class LoginInterceptor implements HandlerInterceptor {
 		log.info("登陆拦截器,执行请求之后,视图生成之后"); 
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private boolean isPlainResource(HttpServletRequest request) {
+		String servletPath = request.getServletPath();
+		log.info(servletPath);
+		for(String str : IGNORE_REQUEST){
+			if(servletPath.endsWith(str)){
+				return true;
+			}
+		}
+		for(String str : IGNORE_URL){
+			if(servletPath.startsWith(str)){
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.jq.survey.service.user;
 
+import java.util.List;
+
 import com.jq.survey.dao.entity.UserInfoDO;
 
 /**
@@ -12,7 +14,9 @@ public interface UserInfoService {
 
 	public UserInfoDO queryUserInfoByPK(String userId);
 	
-	public UserInfoDO queryUserInfoBy();
+	public List<UserInfoDO> queryUserInfoBy(UserInfoDO condtion);
+	
+	public UserInfoDO queryUserInfoByEmail(String email);
 	
 	public int registerUser(UserInfoDO userInfoDO);
 	

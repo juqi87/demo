@@ -49,12 +49,6 @@ END $$
 DELIMITER;
 
 
-
-
-
-
-
-
 -- 该套系统按照模块来划分权限()主要考虑该套系统作为客户端的存在故而按模块来划分权限,若涉及后台控台可按照菜单来划分权限 
 --create table module_info(
 --	module_id 			number(4) constraint module_info_id_pk primary key,

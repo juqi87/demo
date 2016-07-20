@@ -5,10 +5,15 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Random;
+
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.Logger;
+
+import com.jq.survey.utils.constant.Constants;
 
 /**
  * 验证码图片生成工具
@@ -19,8 +24,10 @@ import javax.servlet.http.HttpSession;
  * 日期：2015年8月7日 上午10:41:05
  */
 public class CaptchaUtils {
+	
+	private Logger log = Logger.getLogger(CaptchaUtils.class);
 
-    public static final String RANDOMCODEKEY = "sess_captcha";// 放到session中的key
+    public static final String RANDOMCODEKEY = Constants.CHKCODE;// 放到session中的key
     private Random random = new Random();
     private String randString = "0123456789";// 随机产生的字符串
 
@@ -102,6 +109,7 @@ public class CaptchaUtils {
         for (int i = 1; i <= stringNum; i++) {
             randomString = drowString(g, randomString, i);
         }
+        log.info("生成的验证码：【"+ randomString +"】");
         session.removeAttribute(RANDOMCODEKEY);
         session.setAttribute(RANDOMCODEKEY, randomString);
         g.dispose();
