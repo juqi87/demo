@@ -9,6 +9,7 @@ public class Constants {
 	
 	public static final String CHKCODE = "SESS_CAPTCHA";
 	public static final String REGISTER_ROLE_ID = "aaa";
+	public static final String SYS_MENU_ID = "100000";//系统默认最大级别菜单ID
 
 	public static final String TOKEN="juqi20160623";
 	public static final String APPID = "wx3f74f63e3731d7f2";

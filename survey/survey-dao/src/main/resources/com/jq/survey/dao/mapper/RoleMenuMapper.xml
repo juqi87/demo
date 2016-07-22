@@ -14,4 +14,67 @@
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   
+  <resultMap id="ExtResultMap" type="com.jq.survey.dao.entity.ext.RoleMenuExtDO">
+    <id column="MENU_ID" jdbcType="CHAR" property="menuId" />
+    <id column="ROLE_ID" jdbcType="CHAR" property="roleId" />
+    <result column="STAT" jdbcType="CHAR" property="stat" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="MENU_NAME" jdbcType="VARCHAR" property="menuName" />
+    <result column="MENU_LEVEL" jdbcType="CHAR" property="menuLevel" />
+    <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
+    <result column="SERIAL" jdbcType="INTEGER" property="serial" />
+    <result column="HAVE_SON" jdbcType="INTEGER" property="haveSon" />
+    <result column="MODULE_ICON" jdbcType="INTEGER" property="moduleIcon" />
+  </resultMap>
+  
+  	<!-- 用于select查询公用抽取的列 -->
+	<sql id="Base_Column_List">
+        select 
+        	MENU_ID, 
+        	ROLE_ID, 
+        	STAT,
+        	CREATE_TIME,
+        	UPDATE_TIME
+        from ROLE_MENU 
+	</sql>
+	
+	<select id="selectByCondition"  resultMap="BaseResultMap" parameterType="com.jq.survey.dao.entity.RoleMenuDO">
+		<include refid="Base_Column_List"/>
+		where 1=1
+			<if test="menuId != null and menuId != ''">  
+	            <![CDATA[ and MENU_ID =  #{menuId}]]>
+			</if>
+			<if test="roleId != null and roleId != ''">  
+	            <![CDATA[ and ROLE_ID =  #{roleId}]]>
+			</if>
+			<if test="stat != null and stat != ''">  
+	            <![CDATA[ and STAT =  #{stat}]]>
+			</if>
+	</select>
+	
+	<select id="queryRoleMenuBy"  resultMap="ExtResultMap" parameterType="com.jq.survey.dao.entity.ext.RoleMenuExtDO">
+		select r.ROLE_ID, r.MENU_ID, 
+			   m.MENU_NAME, m.MENU_LEVEL, m.MODULE_ICON, m.PARENT_ID, m.HAVE_SON, m.SERIAL, m.STAT
+		from ROLE_MENU r, MENU_INFO m
+		where r.MENU_ID=m.MENU_ID
+			<if test="roleId != null and roleId != ''">  
+	            <![CDATA[ and r.ROLE_ID =  #{roleId}]]>
+			</if>
+			<if test="menuId != null and menuId != ''">  
+	            <![CDATA[ and r.MENU_ID =  #{menuId}]]>
+			</if>
+			<if test="menuLevel != null and menuLevel != ''">  
+	            <![CDATA[ and m.MENU_LEVEL =  #{menuLevel}]]>
+			</if>
+			<if test="parentId != null and parentId != ''">  
+	            <![CDATA[ and m.PARENT_ID =  #{parentId}]]>
+			</if>
+			<if test="stat != null and stat != ''">  
+	            <![CDATA[ and r.STAT =  #{stat}]]>
+	            <![CDATA[ and m.STAT =  #{stat}]]>
+			</if>
+		order by m.SERIAL
+	</select>
+  
 </mapper>

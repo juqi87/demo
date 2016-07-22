@@ -86,7 +86,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 	
 	private boolean isPlainResource(HttpServletRequest request) {
 		String servletPath = request.getServletPath();
-		log.info(servletPath);
+		log.info("请求路径："+servletPath);
 		for(String str : IGNORE_REQUEST){
 			if(servletPath.endsWith(str)){
 				return true;

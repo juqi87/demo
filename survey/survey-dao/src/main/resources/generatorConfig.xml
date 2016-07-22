@@ -8,8 +8,6 @@
 		<javaModelGenerator targetPackage="com.jq.survey.dao.entity" targetProject="survey-dao" />
 		<sqlMapGenerator targetPackage="com.jq.survey.dao.mapper" targetProject="survey-dao" />
 		<javaClientGenerator targetPackage="com.jq.survey.dao.mapper" targetProject="survey-dao" type="XMLMAPPER" />
-		<table schema="demo1" tableName="USER_INFO" ></table>
-		<table schema="demo1" tableName="ROLE_INFO" ></table>
-		<table schema="demo1" tableName="ROLE_MENU" ></table>
+		<table schema="demo1" tableName="MENU_INFO" ></table>
 	</context>
 </generatorConfiguration>

@@ -3,6 +3,7 @@ package com.jq.survey.dao.mapper;
 import java.util.List;
 
 import com.jq.survey.dao.entity.RoleMenuDO;
+import com.jq.survey.dao.entity.ext.RoleMenuExtDO;
 
 /**
  * 
@@ -13,5 +14,7 @@ import com.jq.survey.dao.entity.RoleMenuDO;
 public interface RoleMenuMapper {
 
 	List<RoleMenuDO> selectByCondition(RoleMenuDO condition);
+	
+	List<RoleMenuExtDO> queryRoleMenuBy(RoleMenuExtDO condition);
 	
 }

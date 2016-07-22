@@ -20,6 +20,7 @@ import com.jq.survey.utils.common.EncryptUtils;
 import com.jq.survey.utils.common.ValidateUtils;
 import com.jq.survey.utils.constant.Constants;
 import com.jq.survey.utils.enums.RespCodeEnum;
+import com.jq.survey.utils.enums.StatEnum;
 import com.jq.survey.utils.exception.HandleException;
 import com.jq.survey.web.controller.common.BaseController;
 import com.jq.survey.web.vo.LoginVO;
@@ -83,7 +84,14 @@ public class LoginController extends BaseController {
 				model.put("loginVO", loginVO);
 				return "/view/login/login";
 			}
-			//4.校验密码
+			//4.用户状态是否正常
+			if(!StatEnum.NORMAL.getCode().equals(userInfoDO.getStat())){
+				log.warn("用户状态不正常");
+				model.put("message", RespCodeEnum.USER_INFO_NOT_EXIST.getDesc());
+				model.put("loginVO", loginVO);
+				return "/view/login/login";
+			}
+			//5.校验密码
 			String clearPassword = loginVO.getPassword();
 			String encodePassword = userInfoDO.getPassword();
 			if(!EncryptUtils.validatePwd(clearPassword, encodePassword)){
@@ -94,7 +102,7 @@ public class LoginController extends BaseController {
 			}
 			log.info("密码校验成功！");
 			log.info("用户身份信息正确");
-			//5.保存进入session
+			//6.保存进入session
 //			session.invalidate();//让之前的session失效
 			UserInfoVO userInfoVO = new UserInfoVO();
 			BeanUtils.copyProperties(userInfoDO, userInfoVO);
@@ -109,7 +117,7 @@ public class LoginController extends BaseController {
 			model.put("message", RespCodeEnum.SYSTEM_ERROR.getDesc());
 			return "/view/login/login";
 		}
-		return "/view/login/index";
+		return "redirect:../index.htm";
 	}
 		
 	@RequestMapping("/logout")

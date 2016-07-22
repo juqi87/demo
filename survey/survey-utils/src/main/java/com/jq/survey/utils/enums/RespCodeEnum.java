@@ -13,7 +13,8 @@ public enum RespCodeEnum {
 	SYSTEM_ERROR("XXX", "系统错误"),
 	
 	USER_INFO_NOT_EXIST("001", "用户不存在"),
-	PASSWORD_ERROR("001", "密码错误"),
+	PASSWORD_ERROR("002", "密码错误"),
+	REQ_DATA_NOT_EXIST("003", "请求数据不存在"),
 	
 	REQ_DATA_ILLEGAL("100", "请求参数不合法"),
 	LOGIN_NAME_ILLEGAL("101", "账户名为空或格式不正确"),

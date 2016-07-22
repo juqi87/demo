@@ -19,6 +19,7 @@
             apply the skin class to the body tag so the changes take effect.
         -->
         <link rel="stylesheet" href="/survey/static/AdminLTE/dist/css/skins/skin-blue.min.css">
+        <link rel="stylesheet" href="/survey/static/css/system.css">
         
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -141,15 +142,25 @@
                   <ul class="sidebar-menu">
                     <li class="header">HEADER</li>
                     <!-- Optionally, you can add icons to the links -->
-                    <li class="active"><a href="/survey/paper/test.htm" target="navTab"><i class="fa fa-link"></i> <span>Link</span></a></li>
-                    <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-                    <li class="treeview">
-                      <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
-                      <ul class="treeview-menu">
-                        <li><a href="#">Link in level 2</a></li>
-                        <li><a href="#">Link in level 2</a></li>
-                      </ul>
-                    </li>
+                    <#if menuInfoList??>
+                        <#list menuInfoList as menuLevel1>
+                            <#if menuLevel1.haveSon=='Y'>
+                                <li class="treeview">
+                                    <a href="#"><i class="${menuLevel1.moduleIcon!''}"></i> <span>${menuLevel1.menuName!''}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                    <ul class="treeview-menu">
+                                        <#if menuLevel1.munuInfoVOs??>
+                                            <#list menuLevel1.munuInfoVOs as menuLevel2>
+                                                <li><a href="#"><i class="${menuLevel1.moduleIcon!''}"></i><span>${menuLevel2.menuName!''}</span></a></li>
+                                            </#list>
+                                        </#if>
+                                    </ul>
+                                </li>
+                            <#else>
+                                <li><a href="#"><i class="${menuLevel1.moduleIcon!''}"></i> <span>${menuLevel1.menuName!''}</span></a></li>
+                            </#if>
+                        </#list>
+                    </#if>
+                    
                   </ul>
                   <!-- /.sidebar-menu -->
                 </section>
@@ -157,26 +168,12 @@
             </aside>
             
             <!-- Content Wrapper. Contains page content ++++++++++++++++++++++++++++++++++++++-->
-            <div class="content-wrapper" id="navTab">
-                <!-- Content Header (Page header) -->
-                <section class="content-header">
-                  <h1>
-                    Page Header
-                    <small>Optional description</small>
-                  </h1>
-                  <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                    <li class="active">Here</li>
-                  </ol>
-                </section>
-            
-                <!-- Main content -->
-                <section class="content">
-            
-                    <!-- Your Page Content Here -->
-                    我是首页
-                </section>
-                <!-- /.content -->
+            <div class="content-wrapper" >
+                <div class="embed-responsive embed-responsive-1by1">
+                <iframe name="navTabl">
+                    qqq
+                </iframe>
+                </div>
             </div>
             <!-- /.content-wrapper -->
             
