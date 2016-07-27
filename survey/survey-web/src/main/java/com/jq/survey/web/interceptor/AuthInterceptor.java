@@ -49,6 +49,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) 
 			throws Exception {
 		log.info("权限拦截器,执行请求之前");
+		String servletPath = request.getServletPath();
 		if(isPlainResource(request)){
 			return true;
 		}
@@ -60,10 +61,11 @@ public class AuthInterceptor implements HandlerInterceptor {
 		}
 		String roleId = userInfo.getRoleId();
 		String menuId = getMenu(request);
-		if(authService.hasAuth(roleId, menuId)){
-			log.info("该用户无该权限");
+		if(authService.hasAuth(roleId, menuId) || servletPath.startsWith("/index")){
+			log.info("该用户权限通过");
 			return true;
 		}
+		log.warn("该用户无该权限, roleId="+roleId+",menuId+"+menuId);
 		return false;
 	}
 

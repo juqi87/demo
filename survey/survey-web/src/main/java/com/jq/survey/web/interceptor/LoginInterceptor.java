@@ -24,7 +24,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 	//不做拦截的路径
 	private static final String[] IGNORE_URL = {"/login"};
 	//被拦截后跳转的路径
-	private static final String LOGIN_URL = "../login/goto";
+	private static final String LOGIN_URL = "/login/goto";
 	
 	/**
 	 * 在业务处理器处理请求之前被调用 
