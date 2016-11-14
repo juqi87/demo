@@ -18,20 +18,20 @@ import com.jq.survey.utils.constant.Constants;
 import com.jq.survey.utils.wx.SecurityUtil;
 
 /**
- * 
+ * 服务器绑定
  * 
  * @author juqi
- * @version $Id: CheckController.java, v 0.1 2016年6月24日 下午5:03:58 juqi Exp $
+ * @version $Id: BindingServerController.java, v 0.1 2016年6月24日 下午5:03:58 juqi Exp $
  */
 @Controller
-public class CheckController implements Serializable {
+public class BindingServerController implements Serializable {
 
 	/**  */
 	private static final long serialVersionUID = -6377944868701616661L;
 	
-	private Logger log = Logger.getLogger(CheckController.class);
+	private Logger log = Logger.getLogger(BindingServerController.class);
 	
-	@RequestMapping(value = "/data/receive" , method =RequestMethod.GET )
+	@RequestMapping(value = "/bindingServer" , method =RequestMethod.GET )
     public void index(ModelMap model,HttpServletRequest req,HttpServletResponse rep) {
 		log.info("接受微信绑定服务器请求");
         String signature = req.getParameter("signature");
