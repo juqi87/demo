@@ -32,9 +32,9 @@ public class AuthInterceptor implements HandlerInterceptor {
 	private Logger log = Logger.getLogger(AuthInterceptor.class);
 	
 	//不做拦截的请求
-	private static final String[] IGNORE_REQUEST = {".act"};
+	private static final String[] IGNORE_REQUEST = {".act", ".txt"};
 	//不做拦截的路径
-	private static final String[] IGNORE_URL = {"/login", "/register"};
+	private static final String[] IGNORE_URL = {"/login", "/register", "/test"};
 	//被拦截后跳转的路径
 	private static final String LOGIN_URL = "../login/goto";
 	

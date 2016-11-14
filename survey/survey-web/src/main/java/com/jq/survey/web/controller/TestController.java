@@ -34,6 +34,15 @@ public class TestController {
         return "/testDB";
     }
 	
+	@RequestMapping("/testRequest")
+    public String testRequest(ModelMap model, String auth_code) {
+		log.info("auth_code="+auth_code);
+		
+        return "/test";
+    }
+	
+	public static final String USRID_URL = ""; 
+	
 
 	
 }

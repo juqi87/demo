@@ -20,9 +20,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 	private Logger log = Logger.getLogger(LoginInterceptor.class);
 	
 	//不做拦截的请求
-	private static final String[] IGNORE_REQUEST = {".act"};
+	private static final String[] IGNORE_REQUEST = {".act", ".txt"};
 	//不做拦截的路径
-	private static final String[] IGNORE_URL = {"/login"};
+	private static final String[] IGNORE_URL = {"/login", "/test"};
 	//被拦截后跳转的路径
 	private static final String LOGIN_URL = "/login/goto";
 	
