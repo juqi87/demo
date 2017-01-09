@@ -9,7 +9,7 @@ import com.thoughtworks.xstream.io.naming.NoNameCoder;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 /**
- * 
+ * 封装一些对对象操作的一些方法
  * 
  * @author juqi
  * @version $Id: ObjectUtils.java, v 0.1 2017年1月9日 上午11:14:27 juqi Exp $
@@ -60,4 +60,6 @@ public class ObjectUtils {
         System.out.println(xmlReportBody);
         return xmlReportBody;
     }
+	
+	
 }
