@@ -8,7 +8,7 @@ import org.jq.wechat.base.BasePojo;
  * @author juqi
  * @version $Id: RedPack.java, v 0.1 2017年1月9日 上午11:29:54 juqi Exp $
  */
-public class RedPackRequest extends BasePojo {
+public class SendRedPackRequest extends BasePojo {
 
 	private String nonce_str;// 随机字符串
     private String sign;// 签名
