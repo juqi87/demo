@@ -23,6 +23,7 @@ public class SendRedPackManager {
 	public static final String SEND_RED_PACK_URL = "https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack";
 	public static final String payKey = "8EE25AD624FF332DBEE6BDA82DED43BF";
 	public static final String mch_id = "1416730602";
+	public static final String cert_path = "D:/zhengshu/apiclient_cert.p12"; 
 	
 	public static void main(String[] args) { 
 		SendRedPackRequest sendRedPackRequest = packageredPack();
@@ -60,8 +61,7 @@ public class SendRedPackManager {
 		logger.info("微信发送红包xml报文:" + xmlReport);
 		SendRedPackResponse sendRedPackResponse = new SendRedPackResponse();
 		try {
-			String responseXml = HttpUtils.clientCustomSSL(SEND_RED_PACK_URL, xmlReport, 
-					"D:/zhengshu/apiclient_cert.p12", mch_id);
+			String responseXml = HttpUtils.clientCustomSSL(SEND_RED_PACK_URL, xmlReport, cert_path, mch_id);
 			logger.info("微信发送红包返回的xml报文:" + responseXml);
 			sendRedPackResponse = XmlUtils.convertResult(responseXml, SendRedPackResponse.class);
 		} catch (Exception e) {
