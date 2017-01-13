@@ -1,12 +1,14 @@
 package org.jq.wechat.pojo;
 
+import org.jq.wechat.base.BasePojo;
+
 /**
  * 
  * 
  * @author juqi
  * @version $Id: Article.java, v 0.1 2017年1月13日 下午3:42:17 juqi Exp $
  */
-public class Article {
+public class Article extends BasePojo {
 	
 	// 图文消息名称  
     private String Title;  

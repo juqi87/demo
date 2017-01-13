@@ -1,12 +1,14 @@
 package org.jq.wechat.pojo;
 
+import org.jq.wechat.base.BasePojo;
+
 /**
  * 
  * 
  * @author juqi
  * @version $Id: WeChatUserInfo.java, v 0.1 2016年12月19日 下午2:32:16 juqi Exp $
  */
-public class WeChatUserInfo {
+public class WeChatUserInfo extends BasePojo {
 
 	private String subscribe;//用户是否订阅该公众号标识，值为0时，代表此用户没有关注该公众号，拉取不到其余信息
 	private String openid;//用户的标识，对当前公众号唯一

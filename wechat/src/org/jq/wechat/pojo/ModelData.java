@@ -1,12 +1,14 @@
 package org.jq.wechat.pojo;
 
+import org.jq.wechat.base.BasePojo;
+
 /**
  * 
  * 
  * @author juqi
  * @version $Id: ModelData.java, v 0.1 2017年1月13日 下午3:42:46 juqi Exp $
  */
-public class ModelData {
+public class ModelData extends BasePojo {
 	
     private String value;
     private String color;

@@ -1,12 +1,14 @@
 package org.jq.wechat.pojo;
 
+import org.jq.wechat.base.BasePojo;
+
 /**
  * 
  * 
  * @author juqi
  * @version $Id: ModelMessage.java, v 0.1 2017年1月13日 下午3:42:41 juqi Exp $
  */
-public class ModelMessage {
+public class ModelMessage extends BasePojo {
 	
     private String touser;
     private String template_id;

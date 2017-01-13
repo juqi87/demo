@@ -1,12 +1,14 @@
 package org.jq.wechat.pojo;
 
+import org.jq.wechat.base.BasePojo;
+
 /**
  * 
  * 
  * @author juqi
  * @version $Id: AccessToken.java, v 0.1 2017年1月13日 下午3:41:39 juqi Exp $
  */
-public class AccessToken {
+public class AccessToken extends BasePojo {
 	
     // 获取到的凭证  
     private String token;  

@@ -1,12 +1,14 @@
 package org.jq.wechat.pojo;
 
+import org.jq.wechat.base.BasePojo;
+
 /**
  * 
  * 
  * @author juqi
  * @version $Id: Music.java, v 0.1 2017年1月13日 下午3:42:35 juqi Exp $
  */
-public class Music {
+public class Music extends BasePojo {
 	
 	// 音乐名称  
     private String Title;  

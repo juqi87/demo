@@ -1,5 +1,7 @@
 package org.jq.wechat.pay.redpack.response;
 
+import org.jq.wechat.base.BasePojo;
+
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
@@ -9,7 +11,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * @version $Id: SendRedPackResponse.java, v 0.1 2017年1月9日 下午5:17:50 juqi Exp $
  */
 @XStreamAlias("xml")
-public class SendRedPackResponse {
+public class SendRedPackResponse extends BasePojo {
 
 	@XStreamAlias("return_code")
 	private String return_code;
