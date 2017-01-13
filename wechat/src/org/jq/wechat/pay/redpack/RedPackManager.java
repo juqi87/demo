@@ -16,9 +16,9 @@ import org.jq.wechat.util.XmlUtils;
  * @author juqi
  * @version $Id: SendRedPack.java, v 0.1 2017年1月9日 上午11:35:33 juqi Exp $
  */
-public class SendRedPackManager {
+public class RedPackManager {
 
-	private Logger logger = Logger.getLogger(SendRedPackManager.class);
+	private Logger logger = Logger.getLogger(RedPackManager.class);
 	
 	public static final String SEND_RED_PACK_URL = "https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack";
 	public static final String payKey = "8EE25AD624FF332DBEE6BDA82DED43BF";
@@ -27,8 +27,8 @@ public class SendRedPackManager {
 	
 	public static void main(String[] args) { 
 		SendRedPackRequest sendRedPackRequest = packageredPack();
-		SendRedPackManager sendRedPackManager = new SendRedPackManager();
-		SendRedPackResponse sendRedPackResponse = sendRedPackManager.sendRedPack(sendRedPackRequest);
+		RedPackManager redPackManager = new RedPackManager();
+		SendRedPackResponse sendRedPackResponse = redPackManager.sendRedPack(sendRedPackRequest);
 		System.out.println(ObjectUtils.showDetails(sendRedPackResponse));
 	}
 	
@@ -70,6 +70,12 @@ public class SendRedPackManager {
 		return sendRedPackResponse;
 	}
 	
+	/**
+	 * 将请求转换成xml报文
+	 * @param sendRedPackRequest
+	 * @return
+	 * @author juqi
+	 */
 	private String convertRequest2XmlReport(SendRedPackRequest sendRedPackRequest){
 		Map<String, String> paramMap = ObjectUtils.objectToMap(sendRedPackRequest);
 		String sign = sign(paramMap, payKey);
